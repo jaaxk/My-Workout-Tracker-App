@@ -1,0 +1,177 @@
+#:kivy 0.5.5
+
+
+<IntroWindow>:
+        name: 'intro'
+        Label:
+                id: intro_label
+                text: 'Get after it today!'
+                font_size: 50
+                size_hint: 1, .5
+                pos_hint: {'x':0,'y':.5}
+
+        Button:
+                id: current_workout
+                text: 'Go to current workout'
+                font_size: 30
+                size_hint: 1, .25
+                pos_hint: {'x':0,'y':.25}
+                on_press: root.manager.current = 'main'
+        Label:
+                id: input_label
+                text: 'Input Day:'
+                size_hint: .5,.25
+                pos_hint: {'x':0,'y':0}
+                font_size: 30
+
+        TextInput:
+                id: specific_workout
+                multiline: False
+                font_size: 60
+                size_hint: .5, .25
+                pos_hint: {'x':.5,'y':0}
+                on_text_validate: root.goto_day()
+
+<SecondWindow>:
+        name: 'second'
+        Label:
+                id: final_page_top
+                text: 'Program finished!'
+                font_size: 55
+                size_hint: 1, .25
+                pos_hint: {'x':0,'y':.75}
+
+        Label:
+                id: final_page_bottom
+                text: 'One week deload'
+                font_size: 45
+                size_hint: 1, .15
+                pos_hint: {'x':0,'y':.65}
+
+        Button:
+                id: to_stats
+                text: 'See this cycles stats'
+                font_size: 40
+                size_hint: 1, .2
+                pos_hint: {'x':0 ,'y':.4}
+                on_press: root.to_stats()
+
+        Button:
+                id: reset_csv
+                text: 'Reset CSV'
+                font_size: 30
+                size_hint: 1, .2
+                pos_hint: {'x':0,'y':.2}
+                on_press: root.reset_csv()
+
+        Button:
+                id: back_to_main
+                text: 'Back'
+                font_size: 25
+                size_hint: .5, .2
+                pos_hint: {'x':0,'y':0}
+                on_press: root.previousDay()
+
+        Button:
+                id: quit
+                text: 'Quit'
+                font_size: 25
+                size_hint: .5, .2
+                pos_hint: {'x':.5,'y':0}
+                on_press: app.stop()
+
+
+<LiftingAppMain>:
+        name: 'main'
+        Label:
+                id: header_label
+                text: 'Workout for ' + root.weekandday
+                font_size: 50
+                size_hint: 1, .2
+                pos_hint: {'x':0, 'y':.8}
+
+        Label:
+                text: 'Workout'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.1, 'y':.75}
+
+        Label:
+                text: 'Sets'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.3, 'y':.75}
+
+        Label:
+                text: 'Weight'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.5, 'y':.75}
+
+        Label:
+                text: 'Reps'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.7, 'y':.75}
+
+        FloatLayout:
+                id: main_block        
+                
+        Button:
+                id: next_workout
+                text: 'Next Workout'
+                size_hint: .5, .15
+                pos_hint: {'x':.5, 'y':0}
+                on_press: root.nextDay()
+        Button:
+                id: previous
+                text: 'Previous Workout'
+                size_hint: .5, .15
+                pos_hint: {'x':0, 'y':0}
+                on_press: root.previousDay()
+
+<StatsWindow>:
+        name: 'stats'
+        Label:
+                id: stats_header
+                text: 'This cycles stats'
+                font_size: 45
+                size_hint: 1,.2
+                pos_hint: {'x':0, 'y':.8}
+
+        Label:
+                text: 'Workout'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.1, 'y':.75}
+
+        Label:
+                text: 'Weight Increase'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.3, 'y':.75}
+
+        Label:
+                text: 'Reps Increase'
+                font_size: 30
+                size_hint: .2, .1
+                pos_hint: {'x':.5, 'y':.75}
+
+
+        FloatLayout:
+                id: main_stats
+
+        Button:
+                id: next_stat
+                text: 'Next Days Stats'
+                size_hint: .5, .15
+                pos_hint: {'x':.5, 'y':0}
+                on_press: root.next_stat()
+
+        Button:
+                id: previous_stat
+                text: 'Previous Days Stats'
+                size_hint: .5, .15
+                pos_hint: {'x':0, 'y':0}
+                on_press: root.previous_stat()
+
